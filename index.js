@@ -36,7 +36,7 @@ async function main() {
         }
     });
 
-    const { cid } = await ipfs.add(globSource(path, { recursive: true }));
+    const { cid } = await ipfs.addAll(globSource(path, { recursive: true }));
 
     if (cid) {
         core.setOutput('hash', cid.toV0().toString());

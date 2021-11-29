@@ -1,6 +1,6 @@
-name: 'Crust IPFS Upload'
-description: 'Upload your site to IPFS W3Auth Gateway'
-author: 'crust'
+name: 'Upload DApp to IPFS W3Auth Gateway'
+description: 'Upload your DApp to IPFS W3Auth Gateway'
+author: 'Decoo Technologies'
 branding:
   icon: 'upload'
   color: 'gray-dark'
