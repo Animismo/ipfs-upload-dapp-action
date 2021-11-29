@@ -36,7 +36,9 @@ async function main() {
         }
     });
 
-    const { cid } = await ipfs.addAll(globSource(path, "**/*", { hidden: true }));
+    const { cid } = await ipfs.addAll(globSource(path, "**/*", { hidden: true }), {
+        wrapWithDirectory: true
+    });
 
     if (cid) {
         core.setOutput('hash', cid.toV0().toString());
