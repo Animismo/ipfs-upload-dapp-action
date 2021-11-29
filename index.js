@@ -36,11 +36,19 @@ async function main() {
         }
     });
 
-    const { cid } = await ipfs.addAll(globSource(path, "**/*", { recursive: true, hidden: true }), {
+    // const { cid } = await ipfs.addAll(globSource(path, "**/*", { recursive: true, hidden: true }), {
+    //     pin: true,
+    //     wrapWithDirectory: true,
+    //     timeout: 600000
+    // });
+    for await (let result of ipfs.addAll(globSource(path, "**/*", { recursive: true, hidden: true }), {
         pin: true,
         wrapWithDirectory: true,
         timeout: 600000
-    });
+    })) {
+        console.log(result);
+    }
+    const { cid } = result;
 
     if (cid) {
         core.setOutput('hash', cid.toV0().toString());
