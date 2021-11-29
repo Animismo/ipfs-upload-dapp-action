@@ -41,7 +41,7 @@ async function main() {
     //     wrapWithDirectory: true,
     //     timeout: 600000
     // });
-    for await (let result of ipfs.addAll(globSource(path, "**/*", { recursive: true, hidden: true }), {
+    for await (let result of ipfs.addAll(globSource(path, "**/*", { recursive: true, hidden: true, followSymlinks: true }), {
         pin: true,
         wrapWithDirectory: true,
         timeout: 600000
@@ -51,8 +51,8 @@ async function main() {
     const { cid } = result;
 
     if (cid) {
-        core.setOutput('hash', cid.toV0().toString());
         core.info(`hash: ${cid.toV0().toString()}`);
+        core.setOutput('hash', cid.toV0().toString());
     } else {
         throw new Error('IPFS add failed, please try again.');
     }
