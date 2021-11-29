@@ -46,12 +46,13 @@ async function main() {
         wrapWithDirectory: true,
         timeout: 600000
     })) {
-        console.log(result);
+        core.info(result);
     }
     const { cid } = result;
 
     if (cid) {
         core.setOutput('hash', cid.toV0().toString());
+        core.info(`hash: ${cid.toV0().toString()}`);
     } else {
         throw new Error('IPFS add failed, please try again.');
     }
