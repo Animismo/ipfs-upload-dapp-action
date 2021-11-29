@@ -36,7 +36,7 @@ async function main() {
         }
     });
 
-    const { cid } = await ipfs.addAll(globSource(path, { recursive: true }), {
+    const { cid } = await ipfs.addAll(globSource(path, "**/*", { recursive: true, hidden: true }), {
         pin: true,
         wrapWithDirectory: true,
         timeout: 600000
