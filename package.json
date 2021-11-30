@@ -1,6 +1,6 @@
 {
   "name": "ipfs-upload-action",
-  "version": "2.0.2",
+  "version": "2.1.9",
   "description": "Upload a static website to IPFS W3Auth gateway",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,6 @@
     "@actions/core": "^1.2.6",
     "@polkadot/keyring": "^7.3.1",
     "@vercel/ncc": "^0.27.0",
-    "ipfs-http-client": "^49.0.2"
+    "ipfs-http-client": "^54.0.2"
   }
 }

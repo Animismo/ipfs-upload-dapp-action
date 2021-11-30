@@ -1,8 +1,7 @@
 const core = require('@actions/core');
 const fsPath = require('path');
 const fs = require('fs');
-const IpfsHttpClient = require('ipfs-http-client');
-const { globSource } = IpfsHttpClient;
+const { create, globSource } = require('ipfs-http-client');
 const { Keyring } = require('@polkadot/keyring');
 
 async function main() {
@@ -29,17 +28,20 @@ async function main() {
     const authHeader = Buffer.from(`${pair.address}:${sigHex}`).toString('base64');
 
     // 4. Create ipfs http client
-    const ipfs = IpfsHttpClient({
+    const ipfs = create({
         url: ipfsGateway + '/api/v0',
         headers: {
             authorization: 'Basic ' + authHeader
         }
     });
 
-    const { cid } = await ipfs.add(globSource(path, { recursive: true }));
+    let file;
+    for await (file of ipfs.addAll(globSource(path, '**/*', { hidden: true }), { chunker: 'size-1048576', wrapWithDirectory: true })) {
+        core.info(`Added file. Path: ${file.path}, CID: ${file.cid.toV0().toString()}, Size: ${file.size}`);
+    }
 
-    if (cid) {
-        core.setOutput('hash', cid.toV0().toString());
+    if (file && file.cid) {
+        core.setOutput('hash', file.cid.toV0().toString());
     } else {
         throw new Error('IPFS add failed, please try again.');
     }
