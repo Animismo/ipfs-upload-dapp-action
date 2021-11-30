@@ -1,4 +1,4 @@
-# Crust IPFS Upload action
+# Crust IPFS DApp Upload Action
 
 This action upload your website to IPFS through [IPFS W3Auth Gateway](https://wiki.crust.network/docs/en/buildIPFSWeb3AuthGW)
 
@@ -31,7 +31,7 @@ This action upload your website to IPFS through [IPFS W3Auth Gateway](https://wi
 ## Example usage
 
 ```yaml
-uses: crustio/ipfs-upload-action@2.0.2
+uses: decooio/ipfs-upload-dapp-action@1.0.0
 with:
   path: './build'
   seeds: ${{ secrets.SUBSTRATE_SEEDS }}
@@ -39,10 +39,8 @@ with:
 
 ## Contribution
 
-Feel free to dive in! [Open an issue](https://github.com/crustio/ipfs-upload-action/issues/new) or send a PR.
-
-To contribute to Crust in general, see the [Contribution Guide](https://github.com/crustio/crust/blob/master/docs/CONTRIBUTION.md)
+Feel free to dive in! [Open an issue](https://github.com/decooio/ipfs-upload-dapp-action/issues/new) or send a PR.
 
 ## License
 
-[MIT](https://github.com/crustio/ipfs-crust-action/blob/main/LICENSE) @Crust Network
+[MIT](https://github.com/decooio/ipfs-upload-dapp-action/blob/main/LICENSE) @Crust Network
